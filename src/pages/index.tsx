@@ -1,10 +1,10 @@
-import Navbar from "@/components/elements/Navbar"
+import Navbar from "@/components/Navbar"
 import NavbarMobile from "../test/pages/NavbarMobile"
 
 export default function Home() {
   return (
     <>
-      <Navbar />
+      <NavbarMobile />
     </>
   )
 }
