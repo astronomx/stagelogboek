@@ -1,9 +1,10 @@
+import Navbar from "@/components/elements/Navbar"
+import NavbarMobile from "../test/pages/NavbarMobile"
+
 export default function Home() {
   return (
     <>
-      <h1 className="flex justify-center text-3xl font-bold underline">
-        Hello world!
-      </h1>
+      <Navbar />
     </>
   )
 }
