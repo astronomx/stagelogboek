@@ -1,10 +1,14 @@
+import Head from "next/head";
+
 import Navbar from "@/components/Navbar"
-import NavbarMobile from "../test/pages/NavbarMobile"
 
 export default function Home() {
   return (
     <>
-      <NavbarMobile />
+      <Head>
+        <title>Home - Stagelogboek</title>
+      </Head>
+      <Navbar />
     </>
   )
 }
