@@ -1,4 +1,4 @@
-import { Menu } from '@headlessui/react'
+import { Menu } from '@headlessui/react';
 import { Bars3BottomRightIcon } from "@heroicons/react/24/outline";
 
 export default function Dropdown() {

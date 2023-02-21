@@ -1,6 +1,7 @@
 import Head from "next/head";
 
-import Navbar from "@/components/Navbar"
+import Navbar from "@/components/Navbar";
+import Herobanner from "@/components/Herobanner";
 
 export default function Home() {
   return (
@@ -8,7 +9,12 @@ export default function Home() {
       <Head>
         <title>Home - Stagelogboek</title>
       </Head>
-      <Navbar />
+      <div className="absolute z-10 w-full">
+        <Navbar />
+      </div>
+      <div className="relative z-0">
+        <Herobanner />
+      </div>
     </>
   )
 }
