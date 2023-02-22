@@ -5,7 +5,7 @@ import Dropdown from "@/components/elements/Dropdown";
 export default function Navbar() {
 
     return(
-    <nav className="flex items-center justify-between p-4 bg-white text-green-400 flex-wrap">
+    <nav className="flex items-center justify-between p-4 bg-white text-green-400 flex-wrap drop-shadow-2xl">
         <div className="sm:flex flex-row xl:flex items-center mr-6">
             <Link href="/">
                 <p className="font-bold text-2xl">Stagelogboek</p>
@@ -26,7 +26,7 @@ export default function Navbar() {
             </Link>
         
             <Link href="/">
-              <p className="sm:hidden md:flex lg:flex xl:flex px-6 py-2 hover:bg-slate-100 text-lg rounded-lg">Over ons</p>
+              <p className="sm:hidden md:flex lg:flex xl:flex px-6 py-2 hover:bg-slate-100 text-lg rounded-lg">Hoe het werkt</p>
             </Link>
           </div>
         </div> 
