@@ -1,18 +1,22 @@
 import React from "react";
 import Link from "next/link";
 import Dropdown from "@/components/elements/Dropdown";
+import { Overpass, Oswald, Rubik } from '@next/font/google';
+
+const rubik = Rubik({ subsets: ['latin'] });
 
 export default function Navbar() {
 
     return(
-    <nav className="flex items-center justify-between p-4 bg-white text-green-400 flex-wrap drop-shadow-2xl">
-        <div className="sm:flex flex-row xl:flex items-center mr-6">
+      <div className={rubik.className}>
+        <nav className="flex items-center justify-between p-4 bg-white text-green-400 flex-wrap drop-shadow-2xl">
+          <div className="sm:flex flex-row xl:flex items-center mr-6">
             <Link href="/">
                 <p className="font-bold text-2xl">Stagelogboek</p>
             </Link>
-            <div className="sm:flex justify-center ml-36 md:hidden lg:hidden xl:hidden">
-                <Dropdown />
-            </div>
+          <div className="sm:flex justify-center ml-36 md:hidden lg:hidden xl:hidden">
+            <Dropdown />
+          </div>
         </div>
           
         <div className="w-full block flex-grow md:flex justify-center md:items-center md:w-auto" id="navbarResponsive">
@@ -33,15 +37,16 @@ export default function Navbar() {
 
         <div className="text-sm items-center xl:flex flex-row mr-5">
             <div className="sm:flex flex-row items-center">
-                <Link href="/">
-                    <p className="block mr-2 rounded-lg">Log in</p>
-                </Link>
+              <Link href="/">
+                <p className="block mr-2 rounded-lg">Log in</p>
+              </Link>
                 <p>|</p>
-                <Link href="/">
-                    <p className="block ml-2 rounded-lg">Registreer</p>
-                </Link>
+              <Link href="/">
+                <p className="block ml-2 rounded-lg">Registreer</p>
+              </Link>
             </div>
-        </div>
-    </nav>
+          </div>
+        </nav>
+      </div>
     )
 }
