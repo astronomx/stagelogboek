@@ -5,7 +5,7 @@ export default function Dropdown() {
   return(
     <Menu>
       <Menu.Button><Bars3BottomRightIcon className="h-7 w-7 text-gray-500" /></Menu.Button>
-      <Menu.Items className="flex flex-col absolute text-center text-lg justify-center mt-16 mr-[305px] w-full bg-white">
+      <Menu.Items className="flex flex-col absolute text-center text-lg justify-center mt-16 mr-[304px] w-full bg-white">
         <Menu.Item>
           {({ active }) => (
             <span className="py-3"><a className={`${active && 'bg-blue-500'}`} href="/account">
