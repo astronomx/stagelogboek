@@ -25,7 +25,7 @@ export default function Navbar() {
                 <p className="sm:hidden md:flex lg:flex xl:flex px-6 py-2 hover:bg-slate-100 text-lg rounded-lg">Home</p>
               </Link>
         
-              <Link href="/">
+              <Link href="/logboek">
                 <p className="sm:hidden md:flex lg:flex xl:flex px-6 py-2 hover:bg-slate-100 text-lg rounded-lg">Logboek</p>
               </Link>
         
