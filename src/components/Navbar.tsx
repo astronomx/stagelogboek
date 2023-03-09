@@ -37,11 +37,11 @@ export default function Navbar() {
 
           <div className="text-sm items-center xl:flex flex-row mr-5">
             <div className="sm:flex flex-row items-center">
-              <Link href="/">
+              <Link href="/inloggen">
                 <p className="block mr-2 rounded-lg">Log in</p>
               </Link>
               <p>|</p>
-              <Link href="/">
+              <Link href="/registreren">
                 <p className="block ml-2 rounded-lg">Registreer</p>
               </Link>
             </div>
