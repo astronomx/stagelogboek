@@ -1,7 +1,13 @@
 import Head from "next/head";
+import { NhostClient, NhostProvider } from '@nhost/react'
 
 import Navbar from "@/components/Navbar";
 import Herobanner from "@/components/Herobanner";
+
+const nhost = new NhostClient({
+  subdomain: 'uuqmjnvtneixluiukorf',
+  region: 'eu-central-1'
+})
 
 export default function Home() {
   return (
