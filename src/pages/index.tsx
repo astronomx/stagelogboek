@@ -5,13 +5,12 @@ import Navbar from "@/components/Navbar";
 import Herobanner from "@/components/Herobanner";
 
 const nhost = new NhostClient({
-  subdomain: 'uuqmjnvtneixluiukorf',
-  region: 'eu-central-1'
+  backendUrl: process.env.NEXT_PUBLIC_NHOST_BACKEND_URL || '',
 })
 
 export default function Home() {
   return (
-    <>
+    <NhostProvider nhost={nhost}>
       <Head>
         <title>Home - Stagelogboek</title>
       </Head>
@@ -21,6 +20,6 @@ export default function Home() {
       <div className="relative z-0">
         <Herobanner />
       </div>
-    </>
+    </NhostProvider>
   )
 }
