@@ -1,76 +1,54 @@
-import React, { FormEvent, useState } from "react";
-import { useRouter } from "next/router";
-import { useSignUpEmailPassword } from "@nhost/nextjs";
-import Link from "next/link";
-import Image from "next/image";
-import Navbar from "@/components/Navbar";
+import { useState } from 'react'
+import { useRouter } from 'next/router'
+import { useSignUpEmailPassword } from '@nhost/nextjs'
+import Link from 'next/link'
+import Image from 'next/image'
 
-import LoadingAnimation from "./elements/LoadingAnimation";
+import Navbar from '@/components/Navbar';
+import LoadingAnimation from "@/components/elements/LoadingAnimation";
 import Wave from "public/images/wave.png";
 import Graph from "public/images/shapes/graph.png";
 import Graph1 from "public/images/shapes/graph1.png";
-import Graph2 from "public/images/shapes/graph2.png";
-import Graph3 from "public/images/shapes/graph3.png";
-import Graph4 from "public/images/shapes/graph4.png";
-import Graph5 from "public/images/shapes/graph5.png";
+import Graph2 from "public/images/shapes/graph3.png";
+import Graph3 from "public/images/shapes/graph5.png";
 
 import { Overpass, Oswald, Rubik } from "@next/font/google";
 
 const rubik = Rubik({ subsets: ["latin"] });
 
 const SignUp = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-  const router = useRouter();
-  const {
-    signUpEmailPassword,
-    isSuccess,
-    needsEmailVerification,
-    isError,
-    error,
-  } = useSignUpEmailPassword();
+  const router = useRouter()
 
-  //   const handleOnSubmit = async (e: FormEvent<HTMLInputElement>) => {
-  //     // React.FormEvent
-  //     e.preventDefault()
+  const { signUpEmailPassword, 
+    isLoading, 
+    isSuccess, 
+    needsEmailVerification, 
+    isError, 
+    error } = useSignUpEmailPassword()
 
-  //     await signUpEmailPassword(email, password, {
-  //       displayName: `${firstName} ${lastName}`.trim(),
-  //       metadata: {
-  //         firstName,
-  //         lastName
-  //       }
-  //     })
-  //   }
-  const handleOnSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleOnSubmit = async (e: { preventDefault: () => void }) => {
+    e.preventDefault()
 
-    setIsLoading(true);
-    setIsLoading(false);
-
-    try {
-      await signUpEmailPassword(email, password, {
+    signUpEmailPassword(email, password, {
         displayName: `${firstName} ${lastName}`.trim(),
         metadata: {
-          firstName,
-          lastName,
+            firstName,
+            lastName
         },
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  if (isSuccess) {
-    router.push("/");
-    return null;
+    })
   }
 
-  const disableForm = isLoading || needsEmailVerification;
+  if (isSuccess) {
+    router.push('/logboek')
+    return null
+  }
+
+  const disableForm = isLoading || needsEmailVerification
 
   return (
     <div className={rubik.className}>
@@ -174,16 +152,13 @@ const SignUp = () => {
             <Image src={Graph} alt="graph" className="pl-48" />
             <Image src={Graph1} alt="graph" className="pr-60" />
         </div>
-        <Image src={Graph5} alt="graph" className="pl-20" />
-        <Image src={Graph3} alt="graph" className=" pl-48" />
-        {/* <Image src={Graph5} alt="graph" className="mb-20 pl-48" /> */}
-
-        
+        <Image src={Graph3} alt="graph" className="pl-20" />
+        <Image src={Graph2} alt="graph" className=" pl-48" />        
 
       </div>
       <Image src={Wave} alt="wave" className="fixed bottom-0 w-full h-48" />
     </div>
-  );
-};
+  )
+}
 
-export default SignUp;
+export default SignUp
