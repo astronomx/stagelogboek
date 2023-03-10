@@ -31,7 +31,7 @@ const SignUp = () => {
     isError, 
     error } = useSignUpEmailPassword()
 
-  const handleOnSubmit = async (e) => {
+  const handleOnSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
 
     signUpEmailPassword(email, password, {
