@@ -1,7 +1,6 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 
-import { UserProvider } from 'UserProvider';
 import { NhostProvider, NhostClient } from '@nhost/nextjs';
 
 const nhost = new NhostClient({
@@ -14,9 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return(
     <NhostProvider nhost={nhost} initial={pageProps.nhostSession}>
-      <UserProvider>
-        <Component {...pageProps} /> 
-      </UserProvider>
+      <Component {...pageProps} /> 
     </NhostProvider>
   )
 }
