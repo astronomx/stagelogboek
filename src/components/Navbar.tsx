@@ -22,15 +22,15 @@ export default function Navbar() {
           <div className="w-full block flex-grow md:flex justify-center md:items-center md:w-auto" id="navbarResponsive">
             <div className="text-sm md:flex justify-center lg:flex justify-center xl:flex justify-center">
               <Link href="/">
-                <p className="sm:hidden md:flex lg:flex xl:flex px-6 py-2 hover:bg-slate-100 text-lg rounded-lg">Home</p>
+                <p className="sm:hidden md:flex lg:flex xl:flex px-6 py-2 hover:bg-slate-100 text-lg rounded-lg hover:cursor-pointer">Home</p>
               </Link>
         
               <Link href="/logboek">
-                <p className="sm:hidden md:flex lg:flex xl:flex px-6 py-2 hover:bg-slate-100 text-lg rounded-lg">Logboek</p>
+                <p className="sm:hidden md:flex lg:flex xl:flex px-6 py-2 hover:bg-slate-100 text-lg rounded-lg hover:cursor-pointer">Logboek</p>
               </Link>
         
               <Link href="/">
-                <p className="sm:hidden md:flex lg:flex xl:flex px-6 py-2 hover:bg-slate-100 text-lg rounded-lg">Hoe het werkt</p>
+                <p className="sm:hidden md:flex lg:flex xl:flex px-6 py-2 hover:bg-slate-100 text-lg rounded-lg hover:cursor-pointer">Hoe het werkt</p>
               </Link>
             </div>
           </div> 
@@ -38,11 +38,11 @@ export default function Navbar() {
           <div className="text-sm items-center xl:flex flex-row mr-5">
             <div className="sm:flex flex-row items-center">
               <Link href="/inloggen">
-                <p className="block mr-2 rounded-lg">Log in</p>
+                <p className="block mr-2 rounded-lg hover:cursor-pointer">Log in</p>
               </Link>
               <p>|</p>
               <Link href="/registreren">
-                <p className="block ml-2 rounded-lg">Registreer</p>
+                <p className="block ml-2 rounded-lg hover:cursor-pointer">Registreer</p>
               </Link>
             </div>
           </div>

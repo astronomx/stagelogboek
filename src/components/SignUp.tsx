@@ -1,157 +1,189 @@
-import React, { FormEvent, useState } from 'react';
-import { useRouter } from 'next/router';
-import { useSignUpEmailPassword } from '@nhost/nextjs';
-import Link from 'next/link';
-import Image from 'next/image';
+import React, { FormEvent, useState } from "react";
+import { useRouter } from "next/router";
+import { useSignUpEmailPassword } from "@nhost/nextjs";
+import Link from "next/link";
+import Image from "next/image";
+import Navbar from "@/components/Navbar";
 
-import LoadingAnimation from './elements/LoadingAnimation';
-import Wave from 'public/images/wave.png';
+import LoadingAnimation from "./elements/LoadingAnimation";
+import Wave from "public/images/wave.png";
+import Graph from "public/images/shapes/graph.png";
+import Graph1 from "public/images/shapes/graph1.png";
+import Graph2 from "public/images/shapes/graph2.png";
+import Graph3 from "public/images/shapes/graph3.png";
+import Graph4 from "public/images/shapes/graph4.png";
+import Graph5 from "public/images/shapes/graph5.png";
 
-import { Overpass, Oswald, Rubik } from '@next/font/google';
+import { Overpass, Oswald, Rubik } from "@next/font/google";
 
-const rubik = Rubik({ subsets: ['latin'] });
+const rubik = Rubik({ subsets: ["latin"] });
 
 const SignUp = () => {
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [isLoading, setIsLoading] = useState(false)
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-    const router = useRouter()
-    const { signUpEmailPassword, isSuccess, needsEmailVerification, isError, error } = useSignUpEmailPassword()
+  const router = useRouter();
+  const {
+    signUpEmailPassword,
+    isSuccess,
+    needsEmailVerification,
+    isError,
+    error,
+  } = useSignUpEmailPassword();
 
-//   const handleOnSubmit = async (e: FormEvent<HTMLInputElement>) => {
-//     // React.FormEvent
-//     e.preventDefault()
+  //   const handleOnSubmit = async (e: FormEvent<HTMLInputElement>) => {
+  //     // React.FormEvent
+  //     e.preventDefault()
 
-//     await signUpEmailPassword(email, password, {
-//       displayName: `${firstName} ${lastName}`.trim(),
-//       metadata: {
-//         firstName,
-//         lastName
-//       }
-//     })
-//   }
-    const handleOnSubmit = async (e: FormEvent<HTMLFormElement>) => {
-      e.preventDefault()
+  //     await signUpEmailPassword(email, password, {
+  //       displayName: `${firstName} ${lastName}`.trim(),
+  //       metadata: {
+  //         firstName,
+  //         lastName
+  //       }
+  //     })
+  //   }
+  const handleOnSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-      setIsLoading(true);
-      setIsLoading(false);
-    
-      try {
-        await signUpEmailPassword(email, password, {
-          displayName: `${firstName} ${lastName}`.trim(),
-              metadata: {
-                firstName,
-                lastName
-              }
-          })
-      } catch (error) {
-          console.error(error)
-      }
+    setIsLoading(true);
+    setIsLoading(false);
+
+    try {
+      await signUpEmailPassword(email, password, {
+        displayName: `${firstName} ${lastName}`.trim(),
+        metadata: {
+          firstName,
+          lastName,
+        },
+      });
+    } catch (error) {
+      console.error(error);
     }
+  };
 
-    if (isSuccess) {
-      router.push('/')
-      return null
-    }
+  if (isSuccess) {
+    router.push("/");
+    return null;
+  }
 
-    const disableForm = isLoading || needsEmailVerification
+  const disableForm = isLoading || needsEmailVerification;
 
-    return(
-        <div className={rubik.className}>
-            <div className="flex justify-center mt-20">
-                <div className="bg-white h-[47vh] w-[35vw] rounded-xl drop-shadow-2xl">
-                  {/* <div className={styles['logo-wrapper']}>
-                    <Image src="/logo.svg" alt="logo" layout="fill" objectFit="contain" />
-                  </div> */}
-                  {needsEmailVerification ? (
-                    <div className="flex items-center justify-center">
-                        <p className="text-center text-green-400">
-                          Kijk in je mailbox en klik op de link om je te verifiëren
-                        </p>
+  return (
+    <div className={rubik.className}>
+        <Navbar />
+      <div className="flex justify-center mt-28">
+        <div className="h-[47vh] w-[35vw ] bg-opacity-24 backdrop-filter backdrop-blur-lg drop-shadow-xl rounded-2xl absolute z-10">
+          {needsEmailVerification ? (
+            <div className="flex items-center justify-center w-96 h-96">
+              <p className="text-center text-[#00A39B]">
+                Kijk in je mailbox en klik op de link om<br /> je te verifiëren
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleOnSubmit}>
+              <div className="flex justify-center p-14 text-[#00A39B]">
+                <div className="flex flex-col space-y-4">
+                  <div className="flex flex-row space-x-5">
+                    <div className="flex flex-col">
+                      <label htmlFor="firstname">Voornaam</label>
+                      <input
+                        name="firstname"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        disabled={disableForm}
+                        className="border-2 border-[#00A39B] text-black rounded-lg h-10 p-2 focus:drop-shadow-lg outline-none"
+                        autoComplete="off"
+                        required
+                      />
                     </div>
-                  ) : (
-                    <form onSubmit={handleOnSubmit}>
-                        <div className="flex justify-center p-14">
-                            <div className="flex flex-col space-y-4">
-                                <div className="flex flex-row space-x-5">
-                                    <div className="flex flex-col">
-                                        <label htmlFor="firstname">Voornaam</label>
-                                        <input
-                                            name="firstname"
-                                            value={firstName}
-                                            onChange={(e) => setFirstName(e.target.value)}
-                                            disabled={disableForm}
-                                            className="border-2 border-green-300 rounded-lg h-10 p-2 focus:drop-shadow-lg outline-none"
-                                            autoComplete="off"
-                                            required
-                                        />
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <label htmlFor="lastname">Achternaam</label>
-                                        <input
-                                            name="lastname"
-                                            value={lastName}
-                                            onChange={(e) => setLastName(e.target.value)}
-                                            disabled={disableForm}
-                                            className="border-2 border-green-300 rounded-lg h-10 p-2 focus:drop-shadow-lg outline-none"
-                                            autoComplete="off"
-                                            required
-                                        />
-                                    </div>
-                                </div>
-                                <div className="flex flex-col space-y-4">
-                                    <div className="flex flex-col">
-                                        <label htmlFor="email">Email</label>
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
-                                            disabled={disableForm}
-                                            className="border-2 border-green-300 w-86 rounded-lg h-10 p-2 focus:drop-shadow-lg outline-none"
-                                            autoComplete="off"
-                                            required
-                                        />
-                                    </div>
-                                    {isError ? <p className="text-red-600 text-sm">{error?.message}</p> : null}
-                                    <div className="flex flex-col">
-                                        <label htmlFor="password">Wachtwoord</label>
-                                        <input
-                                            type="password"
-                                            name="password"
-                                            value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
-                                            disabled={disableForm}
-                                            className="border-2 border-green-300 w-86 rounded-lg h-10 p-2 focus:drop-shadow-lg outline-none"
-                                            required
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="flex flex-row-reverse items-center">
-                            <p className="flex text-green-400 justify-end mr-28">
-                            Heb je al een account?{' '}
-                                <Link href="/inloggen">
-                                  <a className="underline text-green-500 hover:text-green-700 pl-1">Log in</a>
-                                </Link>
-                            </p>
-                            <button type="submit" disabled={disableForm} className="w-36 h-8 mr-20 bg-green-400 text-white rounded-lg">
-                              {isLoading ? <LoadingAnimation isLoading={isLoading} /> : 'Maak account'}
-                            </button>
-                        </div>
-                    </form>
-                  )}
+                    <div className="flex flex-col">
+                      <label htmlFor="lastname">Achternaam</label>
+                      <input
+                        name="lastname"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        disabled={disableForm}
+                        className="border-2 border-[#00A39B] text-black rounded-lg h-10 p-2 focus:drop-shadow-lg outline-none"
+                        autoComplete="off"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="flex flex-col space-y-4">
+                    <div className="flex flex-col">
+                      <label htmlFor="email">Email</label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        disabled={disableForm}
+                        className="border-2 border-[#00A39B] text-black w-86 rounded-lg h-10 p-2 focus:drop-shadow-lg outline-none"
+                        autoComplete="off"
+                        required
+                      />
+                    </div>
+                    {isError ? (
+                      <p className="text-red-600 text-sm">{error?.message}</p>
+                    ) : null}
+                    <div className="flex flex-col">
+                      <label htmlFor="password">Wachtwoord</label>
+                      <input
+                        type="password"
+                        name="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        disabled={disableForm}
+                        className="border-2 border-[#00A39B] text-black w-86 rounded-lg h-10 p-2 focus:drop-shadow-lg outline-none"
+                        required
+                      />
+                    </div>
+                  </div>
                 </div>
-            </div>
-            <div className="flex justify-center mt-48">
-                <Image src={Wave} alt="wave" className="w-full h-60 " />
-            </div>
-        </div>
-    )
-}
+              </div>
 
-export default SignUp
+              <div className="flex flex-row-reverse items-center text-[#00A39B]">
+                <p className="flex justify-end mr-24">
+                  Heb je al een account?{" "}
+                  <Link href="/inloggen">
+                    <a className="underline hover:text-[#008492] pl-1">
+                      Log in
+                    </a>
+                  </Link>
+                </p>
+                <button
+                  type="submit"
+                  disabled={disableForm}
+                  className="w-36 h-8 mr-10 bg-[#00A39B] text-white rounded-lg"
+                >
+                  {isLoading ? (
+                    <LoadingAnimation isLoading={isLoading} />
+                  ) : (
+                    "Maak account"
+                  )}
+                </button>
+              </div>
+            </form>
+          )}
+        </div>
+        <div className="relative z-0">
+            <Image src={Graph} alt="graph" className="pl-48" />
+            <Image src={Graph1} alt="graph" className="pr-60" />
+        </div>
+        <Image src={Graph5} alt="graph" className="pl-20" />
+        <Image src={Graph3} alt="graph" className=" pl-48" />
+        {/* <Image src={Graph5} alt="graph" className="mb-20 pl-48" /> */}
+
+        
+
+      </div>
+      <Image src={Wave} alt="wave" className="fixed bottom-0 w-full h-48" />
+    </div>
+  );
+};
+
+export default SignUp;
