@@ -29,7 +29,8 @@ const SignUp = () => {
     isSuccess, 
     needsEmailVerification, 
     isError, 
-    error } = useSignUpEmailPassword()
+    error,
+  } = useSignUpEmailPassword()
 
   const handleOnSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
@@ -41,11 +42,6 @@ const SignUp = () => {
             lastName
         },
     })
-  }
-
-  if (isSuccess) {
-    router.push('/logboek')
-    return null
   }
 
   const disableForm = isLoading || needsEmailVerification
@@ -120,6 +116,9 @@ const SignUp = () => {
                         required
                       />
                     </div>
+                    {isError ? (
+                      <p className="text-red-600 text-sm">{error?.message}</p>
+                    ) : null}
                   </div>
                 </div>
               </div>
